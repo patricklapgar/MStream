@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 
 <?php 
+	include("includes/classes/Account.php");
+
+	$account = new Account();
+
 	include("includes/handlers/register-handler.php");
 	include("includes/handlers/login-handler.php");
 ?>
@@ -15,6 +19,7 @@
 		<form id="loginForm" action="register.php" method="POST">
 			<h2>Login to your account!</h2>
 			<p>
+				<?php echo $account->getError("Your user name must be between 5 and 25 characters."); ?>
 				<label for="loginUsername">Username</label>
 				<input id="loginUsername" type="text" name="loginUsername" placeholder="e.g. alexChheng" required>
 			</p>

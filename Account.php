@@ -3,7 +3,7 @@
         private $errorArray;
 
         // Constructor function
-        public function __constructor(){
+        public function __construct(){
             // Validation functions
             $this->errorArray = array();
         }
@@ -23,12 +23,17 @@
             }
         }
 
+        /////////////////////////////////////////////////////////
+        // THIS IS WHERE THE ERROR IS
+
         public function getError($error){
             if(!in_array($error, $this->errorArray)) {
                 $error = "";
             }
             return "<span class='errorMessage'>$error</span>";
         }
+
+        //////////////////////////////////////////////////////////
 
         private function validateUsername($username){
             if(strlen($un) > 25 || strlen($un) < 5){

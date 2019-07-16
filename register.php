@@ -2,6 +2,7 @@
 
 <?php 
 	include("includes/classes/Account.php");
+	include("includes/classes/Constants.php");
 
 	$account = new Account();
 
@@ -19,7 +20,6 @@
 		<form id="loginForm" action="register.php" method="POST">
 			<h2>Login to your account!</h2>
 			<p>
-				<?php echo $account->getError("Your user name must be between 5 and 25 characters."); ?>
 				<label for="loginUsername">Username</label>
 				<input id="loginUsername" type="text" name="loginUsername" placeholder="e.g. alexChheng" required>
 			</p>
@@ -34,22 +34,27 @@
 		<form id="registerForm" action="register.php" method="POST">
 			<h2>Create you free account!</h2>
 			<p>
+				<?php echo $account->getError(Constants::$usernameCharacters); ?>
 				<label for="registerUsername">Username</label>
 				<input id="registerUsername" type="text" name="registerUsername" placeholder="e.g. alexChheng" required>
 			</p>
 
 			<p>
+				<?php echo $account->getError(Constants::$firstNameCharacters); ?>
 				<label for="firstName">First Name</label>
 				<input id="firstName`
 			" type="text" name="firstName" placeholder="e.g. Alexandra" required>
 			</p>
 
 			<p>
+				<?php echo $account->getError(Constants::$lastNameCharacters); ?>
 				<label for="lastName">Last Name</label>
 				<input id="lastName" type="text" name="lastName" placeholder="e.g. Chheng" required>
 			</p>
 
 			<p>
+				<?php echo $account->getError(Constants::$emailsDoNotMatch); ?>
+				<?php echo $account->getError(Constants::$emailInvalid); ?>
 				<label for="registerEmail">Email</label>
 				<input id="registerEmail" type="email" name="registerEmail" placeholder="e.g. alexChheng@email.com" required>
 			</p>
@@ -63,6 +68,9 @@
 
 
 			<p>
+				<?php echo $account->getError(Constants::$passwordsDoNotMatch); ?>
+				<?php echo $account->getError(Constants::$passwordNotAlphanumeric); ?>
+				<?php echo $account->getError(Constants::$passwordCharacters); ?>
 				<label for="registerPassword">Password</label>
 				<input id="registerPassword" type="password" name="registerPassword" placeholder="Your Password" required>
 			</p>

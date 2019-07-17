@@ -18,7 +18,7 @@
 
             if(empty($this->errorArray)){
                 // Insert into db
-                return insertUserDetails($un, $fn, $ln, $em, $pw);
+                return $this->insertUserDetails($un, $fn, $ln, $em, $pw);
             }else{
                 return false;
             }
@@ -33,8 +33,12 @@
 
         private function insertUserDetails($un, $fn, $ln, $em, $pw){
             $encryptedPW = md5($pw);
-            $profilePic = "";
-
+            $profilePic = "assets/images/profile-pics/download.png";
+            $date = date("Y-m-d");
+            
+            // MySQL query
+            $result = mysqli_query($this->con, "INSERT INTO users VALUES ('', '$un', '$fn', '$ln', '$em', '$encryptedPW', '$date', '$profilePic')");
+            return $result;
         }
 
         private function validateUsername($username){
@@ -43,7 +47,11 @@
                 return;
             }
 
-            // TODO: check if username exists
+            $checkUsernameQuery = mysqli_query($this->con, "SELECT username FROM users WHERE username='$un'");
+            if(mysqli_num_rows($checkUsernameQuery) != 0){
+                array_push($this->errorArray, Constants::$usernameTaken);
+                return;
+            }
         }
 
         private function validateFirstName($firstName){

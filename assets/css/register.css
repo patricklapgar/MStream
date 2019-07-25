@@ -14,9 +14,14 @@ html, body {
     width: 100%;
 }
 
+/* 
+I suspect that what's causing my problem is arising from this block here. 
+Though, I'm not entirely sure.
+*/
+
 #loginContainer * {
     color:#fff;
-    font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+    font-family: "Neue Helvetica", "Helvetica", "Arial", "sans-serif";
     font-weight: normal;
     line-height: 1em;
     box-sizing: border-box;
@@ -84,16 +89,37 @@ html, body {
     display: none;
 }
 
+
+
 .hasAccountText span {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 60px;
+    cursor: pointer;
 }
 
 .hasAccountText {
     text-align: center;
 }
 
+/* ///////////////////////////////////////////////////// */
+/* This is where I started having issues. */
 
+#loginText {
+    padding: 45px;
+    display: table;
+}
+
+#loginText h1 {
+    color: #07d159;
+    font-size: 60px;
+    font-weight: bold;
+}
+/* /////////////////////////////////////////////////////// */
+
+#loginText h2 {
+    margin: 35px 0;
+
+}
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:  #fff;

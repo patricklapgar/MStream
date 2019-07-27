@@ -14,11 +14,6 @@ html, body {
     width: 100%;
 }
 
-/* 
-I suspect that what's causing my problem is arising from this block here. 
-Though, I'm not entirely sure.
-*/
-
 #loginContainer * {
     color:#fff;
     font-family: "Neue Helvetica", "Helvetica", "Arial", "sans-serif";
@@ -89,21 +84,6 @@ Though, I'm not entirely sure.
     display: none;
 }
 
-
-
-.hasAccountText span {
-    font-weight: bold;
-    font-size: 60px;
-    cursor: pointer;
-}
-
-.hasAccountText {
-    text-align: center;
-}
-
-/* ///////////////////////////////////////////////////// */
-/* This is where I started having issues. */
-
 #loginText {
     padding: 45px;
     display: table;
@@ -114,11 +94,23 @@ Though, I'm not entirely sure.
     font-size: 60px;
     font-weight: bold;
 }
-/* /////////////////////////////////////////////////////// */
 
 #loginText h2 {
-    margin: 35px 0;
+    margin: 35px 0px;
+}
 
+#loginText ul {
+    padding: 0px;
+}
+
+.hasAccountText span {
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.hasAccountText {
+    text-align: center;
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */

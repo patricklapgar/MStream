@@ -55,7 +55,7 @@
 					<p>
 						<?php echo $account->getError(Constants::$loginFailed); ?>
 						<label for="loginUsername">Username</label>
-						<input id="loginUsername" type="text" name="loginUsername" placeholder="e.g. alexChheng" required>
+						<input id="loginUsername" type="text" name="loginUsername" placeholder="e.g. alexChheng" value="<?php getInputValue('loginUsername') ?>" required>
 					</p>
 					<p>
 						<label for="loginPassword">Password</label>
@@ -132,16 +132,17 @@
 			</div>
 
 			<div id="loginText">
-				<h1>Get great music, right now!</h1>
+				<h1>Get great music, right now</h1>
 				<h2>Listen to loads of songs for free</h2>
 				<ul>
-					<li>Discover music you'll love</li>
+					<li>Discover music you'll fall in love with</li>
 					<li>Create your own playlists</li>
-					<li>Follow artists to keep up to date with the best tracks</li>
+					<li>Follow artists to keep up to date</li>
 				</ul>
 			</div>
 
 		</div>
+		<h5 id="courtesy">Courtesy of <a href="https://icons8.com/paid-license-99">Icons8</a> for supplying the icons used in this application</h5>
 	</div>
 
 </body>

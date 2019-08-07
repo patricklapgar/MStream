@@ -1,36 +1,5 @@
-<?php 
-	include("includes/config.php");
+<?php include("includes/header.php"); ?>
+					
+<h1>You Might Also Like</h1>
 
-	// session_destroy(); LOGOUT
-
-
-	if(isset($_SESSION['userLoggedIn'])){
-		$userLoggedIn = $_SESSION['userLoggedIn'];
-	}else{
-		header("Location: register.php");
-	}
-
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>MStream</title>
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-</head>
-
-<body>
-
-	<div id="mainContainer">
-
-		<div id="topContainer">
-			<?php include("includes/navBarContainer.php"); ?>
-		</div>
-
-		<?php include("includes/nowPlayingBar.php"); ?>
-		
-	</div>
-
-</body>
-
-</html>
+<?php include("includes/footer.php"); ?>

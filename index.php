@@ -19,13 +19,13 @@
             // The . syntax joins two or more strings together
 
             echo "<div class='gridViewItem'>
+                    <a href='album.php?id=" . $row['id'] ."'>
+                        <img src='" . $row['artworkPath'] . "'>
 
-                <img src='" . $row['artworkPath'] . "'>
-
-                <div class='gridViewInfo'>"
-                    . $row['title'] .
-                "</div>
-
+                        <div class='gridViewInfo'>"
+                            . $row['title'] .
+                        "</div>
+                    </a>
             </div>";
         }
     ?>

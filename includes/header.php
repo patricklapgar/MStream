@@ -1,5 +1,8 @@
 <?php 
 	include("includes/config.php");
+	include("includes/classes/Artist.php");
+	include("includes/classes/Album.php");
+	include("includes/classes/Song.php");
 
 	// session_destroy(); LOGOUT
 
@@ -17,6 +20,9 @@
 <head>
 	<title>MStream</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<script>
+		$('html').css('overflow', 'hidden');
+	</script>
 </head>
 
 <body>

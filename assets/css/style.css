@@ -7,6 +7,7 @@ html, body {
 * {
     font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
     color: #fff;
+    letter-spacing: 1px;
 }
 
 body {
@@ -241,11 +242,58 @@ body {
     width: 100%;
 }
 
+.gridViewItem a {
+    text-decoration: none;
+}
+
 /* .gridViewItem img:hover {
     /////////////////////////////////////////////////
     Do something with this later on.
     ////////////////////////////////////////////////
 } */
+
+.gridViewInfo {
+    font-weight: 300;
+    text-align: center;
+    padding: 5px 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.entityInfo {
+    padding: 40px 0 10px 0;
+    display: inline-block;
+    width: 100%;
+}
+
+.entityInfo .leftSection {
+    width: 30%;
+    float: left;
+    max-width: 250px;
+}
+
+.entityInfo .rightSection {
+    width: 70%;
+    float: left;
+    padding: 5px 10px 5px 40px;
+    box-sizing: border-box;
+}
+
+.entityInfo .rightSection h2 {
+    margin-top: 0px;
+}
+
+.entityInfo .rightSection p {
+    color: #939393;
+    font-weight: 200;
+}
+
+.entityInfo .leftSection img {
+    width: 100%;
+}
+
+
 
 ::-webkit-scrollbar { 
     display: none; 

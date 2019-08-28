@@ -293,7 +293,92 @@ body {
     width: 100%;
 }
 
+.trackList {
+    padding: 0;
+}
 
+.tracklistRow {
+    height: 40px;
+    padding: 15px 10px;
+    /* The code below removes the dot at the beginning of each list item */
+    list-style: none;
+}
+
+.tracklistRow span {
+     color: #939393;
+     font-weight: 200;
+}
+
+.tracklistRow:hover {
+    background-color: #282828;
+}
+
+.tracklistRow .trackCount {
+    width: 8%;
+    float: left;
+}
+
+.tracklistRow .trackCount img {
+    width: 20px;
+    visibility: hidden;
+    /* 
+    Just for reference, the value of absolute in this case means this 
+    particular element positions itself based on the position of the parent element's position
+     */
+    position: absolute;
+    cursor: pointer;
+}
+
+/* Play button image */
+.tracklistRow:hover .trackCount img {
+    visibility: visible;
+}
+/* Song id */
+.tracklistRow .trackCount span {
+    visibility: visible;
+}
+
+/* Song id */
+.tracklistRow:hover .trackCount span {
+    visibility: hidden;
+}
+
+.tracklistRow .trackInfo {
+    width: 75%;
+    float: left;
+}
+
+.tracklistRow .trackInfo span {
+    display: block;
+}
+
+/* Song name */
+.tracklistRow .trackInfo .trackName {
+    color: #fff;
+    margin-bottom: 7px;
+}
+
+.tracklistRow .trackOptions {
+    width: 5%;
+    float: left;
+    text-align: right;
+}
+
+/* Song options image */
+.tracklistRow .trackOptions img {
+    width: 15px;
+    visibility: hidden;
+}
+
+.tracklistRow:hover .trackOptions img {
+    visibility: visible;
+}
+
+.tracklistRow .trackDuration {
+    width: 12%;
+    float: left;
+    text-align: right;
+}
 
 ::-webkit-scrollbar { 
     display: none; 

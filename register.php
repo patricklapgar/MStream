@@ -107,7 +107,7 @@
 
 
 
-
+ 
 					<p>
 						<?php echo $account->getError(Constants::$passwordsDoNotMatch); ?>
 						<?php echo $account->getError(Constants::$passwordNotAlphanumeric); ?>

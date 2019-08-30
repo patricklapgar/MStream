@@ -17,7 +17,6 @@
 ?>
 
 <script>
-    //jQuery document block
     $(document).ready(function() {
         // Remember this variable below is an array of song IDs
         currentPlaylist = <?php echo $jsonArray; ?>;
@@ -29,12 +28,34 @@
 
     // Public set track function
     function setTrack(trackId, newPlaylist, play) {
-        audioElement.setTrack("assets/music/Dan+Shay - Speechless(Lyrics).mp3");
-        
-        // If the play button has been pressed, then play the current song
-        if(play) {
-            audioElement.play();
-        }
+        // Ajax call
+         /* 
+         Ajax calls come in up to 3 pieces : 
+         1. The url of the page used when the ajax request is called
+         2. The data which is passed into the requested webpage
+         3. A callback function which handles the result data
+         */
+        $.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
+            // Convert json into an object
+            var track = JSON.parse(data);
+
+            // jQuery code block
+            $(".trackName span").text(track.title);
+
+            $.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data) {
+                var artist = JSON.parse(data);
+
+                // jQuery code block
+                $(".artistName span").text(artist.name);
+            });
+
+            audioElement.setTrack(track.path);
+ 
+            // If the play button has been pressed, then play the current song
+            if(play == true) {
+                audioElement.play();
+            }
+        });
      }
 
      function playSong() {
@@ -61,11 +82,11 @@
 
                     <div class="trackInfo">
                         <span class="trackName">
-                            <span>Hello World</span>
+                            <span></span>
                         </span>
 
                         <span class="artistName">
-                            <span>Patrick Apgar</span>
+                            <span></span>
                         </span>
                     </div>
 

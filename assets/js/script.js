@@ -8,8 +8,9 @@ function Audio() {
     this.audio = document.createElement('audio');
 
     // This function will be called everytime a new song is selected
-    this.setTrack = function(src) {
-        this.audio.src = src;
+    this.setTrack = function(track) {
+        this.currentlyPlaying = track;
+        this.audio.src = track.path;
     }
 
     this.play = function() {

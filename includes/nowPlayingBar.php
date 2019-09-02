@@ -39,26 +39,37 @@
             // Convert json into an object
             var track = JSON.parse(data);
 
-            // jQuery code block
             $(".trackName span").text(track.title);
 
             $.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data) {
                 var artist = JSON.parse(data);
 
-                // jQuery code block
                 $(".artistName span").text(artist.name);
             });
 
-            audioElement.setTrack(track.path);
- 
-            // If the play button has been pressed, then play the current song
-            if(play == true) {
+            $.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function(data) {
+                var album = JSON.parse(data);
+
+            
+                $(".albumLink img").attr("src", album.artworkPath);
+            });
+
+            audioElement.setTrack(track);
+            playSong();
+        });
+
+        // If the play button has been pressed, then play the current song
+        if(play == true) {
                 audioElement.play();
             }
-        });
      }
 
      function playSong() {
+        // ajax call to update play count each time a song is played
+        if(audioElement.audio.currentTime == 0){
+            $.post("includes/handlers/ajax/updatePlays.php", { songId: audioElement.currentlyPlaying.id });
+        }
+
          $(".controlButton.play").hide();
          $(".controlButton.pause").show();
          audioElement.play();
@@ -77,7 +88,7 @@
         <div id="nowPlayingLeft">
                 <div class="content">
                     <span class="albumLink">
-                        <img src="assets/images/artwork/h3ODST.jpg" class="albumArtwork" width="57px">
+                        <img src="" class="albumArtwork" width="57px">
                     </span>
 
                     <div class="trackInfo">

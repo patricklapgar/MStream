@@ -78,6 +78,16 @@
         audioElement.setTime(seconds);
     }
 
+    // previous song function
+    function previousSong() {
+        if(audioElement.audio.currentTime >= 3 || currentIndex == 0) {
+            audioElement.setTime(0);
+        } else {
+            currentIndex = currentIndex - 1;
+            setTrack(currentPlaylist[currentIndex], currentPlaylist, true);
+        }
+    }
+
      // skip song function
     function nextSong() {
 
@@ -102,6 +112,13 @@
         repeat = !repeat;
         var imageName = repeat ? "repeat-active.png" : "repeat.png";
         $(".controlButton.repeat img").attr("src", "assets/images/icons/" + imageName);
+    }
+
+    // Mute song function
+    function setMute() {
+        audioElement.audio.muted = !audioElement.audio.muted;
+        var imageName = audioElement.audio.muted ? "volume-mute.png" : "volume.png";
+        $(".controlButton.volume img").attr("src", "assets/images/icons/" + imageName);
     }
 
     // Public set track function
@@ -194,7 +211,7 @@
                         <img src="assets/images/icons/shuffle.png" alt="shuffle">
                     </button>
 
-                    <button class="controlButton previous" title="Take it back a bit">
+                    <button class="controlButton previous" title="Take it back a bit" onclick="previousSong()">
                         <img src="assets/images/icons/previous.png" alt="previous">
                     </button>
                     
@@ -232,7 +249,7 @@
 
         <div id="nowPlayingRight">
             <div class="volumeBar">
-                <button class="controlButton volume" title="Volume button">
+                <button class="controlButton volume" title="Volume button" onclick="setMute()">
                     <img src="assets/images/icons/volume.png" alt="Volume">
                 </button>
 

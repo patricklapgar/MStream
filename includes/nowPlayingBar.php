@@ -1,9 +1,6 @@
 <?php 
-
     // Create a playlist of 10 random songs from the database
     $songQuery = mysqli_query($con, "SELECT * FROM songs ORDER BY RAND() LIMIT 10");
-    
-    // Playist of random songs
     $resultArray = array();
 
     // Convert the result of the 'songQuery' variable into an array
@@ -12,7 +9,7 @@
         array_push($resultArray, $row['id']);
     }
 
-    // Convert PHP variable into JSON to be understood by JavaScript
+    // Convert PHP array into JSON array
     $jsonArray = json_encode($resultArray);
 ?>
 
@@ -24,10 +21,94 @@
 
         // Set tracklist
         setTrack(currentPlaylist[0], currentPlaylist, true);
+        updateVolumeProgressBar(audioElement.audio);
+
+        
+        $("#nowPlayingBarContainer").on("mousedown touchstart mousemove touchmove", function(e) {
+            e.preventDefault();
+        });
+
+        // The jQuery blocks below will let the user drag the playbar progress other points in the song
+       $(".playbackBar .progressBar").mousedown(function() {
+            mouseDown = true;
+       });
+
+       $(".playbackBar .progressBar").mousemove(function(e) {
+        if(mouseDown) {
+                // Set time of song, depending on position of mouse
+                timeFromOffset(e, this);
+            }
+       });
+
+       $(".playbackBar .progressBar").mouseup(function(e) {
+           timeFromOffset(e, this);
+       });
+        
+
+    //   Volume button control functions
+    $(".volumeBar .progressBar").mousedown(function() {
+            mouseDown = true;
+       });
+
+    $(".volumeBar .progressBar").mousemove(function(e) {
+        if(mouseDown) {
+            var percentage = e.offsetX / $(this).width();
+            if(percentage >= 0 && percentage <= 1){
+                    audioElement.audio.volume = percentage;
+                }
+            }
+       });
+
+       $(".volumeBar .progressBar").mouseup(function(e) {
+            var percentage = e.offsetX / $(this).width();
+            if(percentage >= 0 && percentage <= 1){
+                audioElement.audio.volume = percentage;
+            }
+       });
+        
+       $(document).mouseup(function() {
+            mouseDown = false;
+       });
+
     });
+
+    function timeFromOffset(mouse, progressBar) {
+        var percentage = mouse.offsetX / $(progressBar).width() * 100;
+        var seconds = audioElement.audio.duration * (percentage / 100);
+        audioElement.setTime(seconds);
+    }
+
+     // skip song function
+    function nextSong() {
+
+        if(repeat == true) {
+            audioElement.setTime(0);
+            playSong();
+            return;
+        }
+
+        if(currentIndex == currentPlaylist.length - 1) {
+            currentIndex = 0;
+        }else {
+            currentIndex++;
+        }
+
+        var trackToPlay = currentPlaylist[currentIndex];
+        setTrack(trackToPlay, currentPlaylist, true);
+    }
+
+    // Repeat song function
+    function setRepeat() {
+        repeat = !repeat;
+        var imageName = repeat ? "repeat-active.png" : "repeat.png";
+        $(".controlButton.repeat img").attr("src", "assets/images/icons/" + imageName);
+    }
 
     // Public set track function
     function setTrack(trackId, newPlaylist, play) {
+        currentIndex = currentPlaylist.indexOf(trackId);
+        pauseSong();
+
         // Ajax call
          /* 
          Ajax calls come in up to 3 pieces : 
@@ -36,6 +117,7 @@
          3. A callback function which handles the result data
          */
         $.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
+
             // Convert json into an object
             var track = JSON.parse(data);
 
@@ -65,8 +147,8 @@
      }
 
      function playSong() {
-        // ajax call to update play count each time a song is played
         if(audioElement.audio.currentTime == 0){
+            // ajax call to update play count each time a song is played
             $.post("includes/handlers/ajax/updatePlays.php", { songId: audioElement.currentlyPlaying.id });
         }
 
@@ -77,8 +159,8 @@
 
      function pauseSong() {
         $(".controlButton.play").show();
-         $(".controlButton.pause").hide();
-         audioElement.pause();
+        $(".controlButton.pause").hide();
+        audioElement.pause();
      }
 </script>
 
@@ -124,11 +206,11 @@
                         <img src="assets/images/icons/pause.png" alt="pause">
                     </button>
                     
-                    <button class="controlButton next" title="Thank u, next">
+                    <button class="controlButton next" title="Thank u, next" onclick="nextSong()">
                         <img src="assets/images/icons/next.png" alt="next">
                     </button>
                     
-                    <button class="controlButton repeat" title="Repeat song">
+                    <button class="controlButton repeat" title="Repeat song" onclick="setRepeat()">
                         <img src="assets/images/icons/repeat.png" alt="repeat">
                     </button>
                 </div>

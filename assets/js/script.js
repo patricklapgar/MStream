@@ -1,8 +1,23 @@
 var currentPlaylist = new Array();
+var shufflePlaylist = new Array();
+var tempPlaylist = new Array();
 var audioElement;
 var mouseDown = false;
 var currentIndex = 0;
 var repeat = false;
+var shuffle = false;
+var userLoggedIn;
+
+// This function will allow seamless page transition from one page to another
+function openPage(url) {
+    if(url.indexOf("?") == -1){
+        url = url + "?";
+    }
+        var encodedUrl = encodeURI(url + "&userLoggedIn=" + userLoggedIn);
+        $("#mainContent").load(encodedUrl);
+        $("#body").scrollTop(0);
+        history.pushState(null, null, url);
+}
 
 function formatTime(seconds) {
     var time = Math.round(seconds);

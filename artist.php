@@ -89,7 +89,7 @@
             // The . syntax joins two or more strings together
 
             echo "<div class='gridViewItem'>
-                    <span role='link' tabindex='0' onclick='openPage(\"album.php?id=" . $row['id'] . "\")'>
+                    <span class='buttonSpecial' role='link' tabindex='0' onclick='openPage(\"album.php?id=" . $row['id'] . "\")'>
                         <img src='" . $row['artworkPath'] . "'>
 
                         <div class='gridViewInfo'>"

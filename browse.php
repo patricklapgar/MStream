@@ -12,6 +12,8 @@
     for the music/albums.
 -->
 
+<div class="scroll scroll4"></div>
+
 <div class="gridViewContainer">
 
     <?php 

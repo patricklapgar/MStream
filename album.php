@@ -1,15 +1,17 @@
-<?php include("includes/includedFiles.php");
 
-    if(isset($_GET['id'])) {
-        $albumId = $_GET['id'];
-    } else {
-        header("Location: index.php");
-    }
     
-    // Create a new instance of the Album object to show album information when an album cover is clicked
-    $album = new Album($con, $albumId);
-    $artist = $album->getArtist();
-    $artistId = $artist->getId();
+ <?php include("includes/includedFiles.php");
+
+if(isset($_GET['id'])) {
+	$albumId = $_GET['id'];
+}
+else {
+	header("Location: index.php");
+}
+
+$album = new Album($con, $albumId);
+$artist = $album->getArtist();
+$artistId = $artist->getId();
 ?>
 
 <div class="entityInfo">
@@ -50,6 +52,7 @@
                         </div>
 
                         <div class='trackOptions'>
+                            <input type='hidden' class='songId' value='" . $albumSong->getId() . "'>
                             <img class='optionsButton' src='assets/images/icons/more.png' onclick='showOptionsMenu(this)'>
                         </div>
 
@@ -78,7 +81,5 @@
 
 <nav class="optionsMenu">
     <input type="hidden" class="songId">
-    <div class="item">Add to playlist</div>
-    <div class="item">Item 2</div>
-    <div class="item">Item 3</div>
+    <?php echo Playlist::getPlaylistDropdown($con, $userLoggedIn->getUsername()); ?>
 </nav>

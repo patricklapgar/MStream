@@ -15,7 +15,7 @@
     
     <div class="leftSection">
         <div class="playlistImage">
-            <img src="assets/images/icons/playlist.png" alt="">
+            <img src="assets/images/icons/playlist.png">
         </div>
     </div>
 
@@ -52,12 +52,13 @@
                         </div>
 
                         <div class='trackOptions'>
+                            <input type='hidden' class='songId' value='" . $playlistSong->getId() . "'>
                             <img class='optionsButton' src='assets/images/icons/more.png' onclick='showOptionsMenu(this)'>
                         </div>
 
                         <div class='trackDuration'>
-                            <span class='songDuration'>" . $playlistSong->getDuration() . "</span>                        
-                        </div>
+						    <span class='songDuration'>" . $playlistSong->getDuration() . "</span>
+					    </div>
 
                      </li>";
 
@@ -76,3 +77,9 @@
 
     </ul>
 </div>
+
+<nav class="optionsMenu">
+    <input type="hidden" class="songId">
+    <?php echo Playlist::getPlaylistDropdown($con, $userLoggedIn->getUsername()); ?>
+    <div class="item" onclick="removeFromPlaylist(this, '<?php echo $playlistId; ?>')">Remove from Playlist</div>
+</nav>

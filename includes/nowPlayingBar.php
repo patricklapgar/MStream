@@ -16,11 +16,11 @@
 <script>
     $(document).ready(function() {
         // Remember this variable below is an array of song IDs
-        currentPlaylist = <?php echo $jsonArray; ?>;
+        var newPlaylist = <?php echo $jsonArray; ?>;
         audioElement = new Audio();
 
         // Set tracklist
-        setTrack(currentPlaylist[0], currentPlaylist, true);
+        setTrack(newPlaylist[0], newPlaylist, false);
         updateVolumeProgressBar(audioElement.audio);
 
         
@@ -103,8 +103,25 @@
             currentIndex++;
         }
 
-        var trackToPlay = currentPlaylist[currentIndex];
+        var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
         setTrack(trackToPlay, currentPlaylist, true);
+    }
+
+    // Shuffle song function
+    function setShuffle() {
+        shuffle = !shuffle;
+        var imageName = shuffle ? "shuffle-active.png" : "shuffle.png";
+        $(".controlButton.shuffle img").attr("src", "assets/images/icons/" + imageName);
+    
+        if(shuffle) {
+            // randomize playlist
+            shuffleArray(shufflePlaylist);
+            currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
+        } else {
+            // shuffle is deactivated
+            // go back to regular playlist
+            currentIndex = currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
+        }
     }
 
     // Repeat song function
@@ -112,6 +129,17 @@
         repeat = !repeat;
         var imageName = repeat ? "repeat-active.png" : "repeat.png";
         $(".controlButton.repeat img").attr("src", "assets/images/icons/" + imageName);
+    }
+
+    function shuffleArray(array) {
+        var j, x, i;
+        for(i = array.length; i; i--) {
+            j = Math.floor(Math.random() * i);
+            x = array[i - 1];
+            array[i - 1] = array[j];
+            array[j] = x;
+        }
+
     }
 
     // Mute song function
@@ -123,7 +151,19 @@
 
     // Public set track function
     function setTrack(trackId, newPlaylist, play) {
-        currentIndex = currentPlaylist.indexOf(trackId);
+
+        if(newPlaylist != currentPlaylist) { 
+            currentPlaylist = newPlaylist;
+            shufflePlaylist = currentPlaylist.slice();
+            shuffleArray(shufflePlaylist);
+        }
+
+        if(shuffle == true) {
+            currentIndex = shufflePlaylist.indexOf(trackId);
+        } else {
+            currentIndex = currentPlaylist.indexOf(trackId);
+        }
+        
         pauseSong();
 
         // Ajax call
@@ -143,24 +183,24 @@
             $.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data) {
                 var artist = JSON.parse(data);
 
-                $(".artistName span").text(artist.name);
+                $(".trackInfo .artistName span").text(artist.name);
+                $(".trackInfo .artistName span").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
             });
 
             $.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function(data) {
                 var album = JSON.parse(data);
-
-            
-                $(".albumLink img").attr("src", album.artworkPath);
+                $(".content .albumLink img").attr("src", album.artworkPath);
+                $(".content .albumLink img").attr("onclick", "openPage('album.php?id=" + album.id + "')");
+                $(".trackInfo .trackName span").attr("onclick", "openPage('album.php?id=" + album.id + "')");
             });
 
             audioElement.setTrack(track);
-            playSong();
-        });
-
-        // If the play button has been pressed, then play the current song
-        if(play == true) {
-                audioElement.play();
+            
+            // If the play button has been pressed, then play the current song
+            if(play == true) {
+                playSong();
             }
+        });
      }
 
      function playSong() {
@@ -187,16 +227,16 @@
         <div id="nowPlayingLeft">
                 <div class="content">
                     <span class="albumLink">
-                        <img src="" class="albumArtwork" width="57px">
+                        <img role="link" tabindex="0" src="" class="albumArtwork" width="57px">
                     </span>
 
                     <div class="trackInfo">
                         <span class="trackName">
-                            <span></span>
+                            <span role="link" tabindex="0"></span>
                         </span>
 
                         <span class="artistName">
-                            <span></span>
+                            <span role="link" tabindex="0"></span>
                         </span>
                     </div>
 
@@ -207,7 +247,7 @@
             <div class="content playerControls">
 
                 <div class="buttons">
-                    <button class="controlButton shuffle" title="Shuffle">
+                    <button class="controlButton shuffle" title="Shuffle" onclick="setShuffle()">
                         <img src="assets/images/icons/shuffle.png" alt="shuffle">
                     </button>
 

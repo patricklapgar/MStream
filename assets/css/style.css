@@ -1,7 +1,8 @@
 html, body {
 	padding: 0;
 	margin: 0;
-	height: 100%;
+    height: 100%;
+    overflow: auto;
 }
 
 * {
@@ -380,6 +381,182 @@ body {
     text-align: right;
 }
 
-::-webkit-scrollbar { 
-    display: none; 
+.artistInfo {
+    text-align: center;
+}
+
+.button {
+    color:#fff;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background-color: transparent;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border: 2px solid #fff;
+    border-radius: 500px;
+    padding: 15px;
+    min-width: 130px;
+}
+
+.button.green {
+    background-color: #2ebd59;
+    border-color: #2ebd59;
+}
+
+.borderBottom {
+    border-bottom: 1px solid #939393;
+    margin-bottom: 20px;
+}
+
+.buttonSpecial:focus {
+    outline: none;
+  }
+
+.trackListContainer h2,
+.gridViewContainer h2,
+.artistsContainer h2 {
+    text-align: center;
+}
+
+[role="link"] {
+    cursor: pointer;
+}
+
+.searchContainer {
+    background-color: #242424;
+    padding: 20px 28px;
+}
+
+.searchContainer h4 {
+    margin: 0;
+    font-weight: 300px;
+}
+
+.searchContainer .searchInput {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-weight: 700px;
+    font-size: 60px;
+    letter-spacing: 2px;
+}
+
+.searchResultRow {
+    padding: 15px 10px;
+}
+
+.searchResultRow:hover {
+    background-color: #282828;
+}
+
+.searchResultRow .artistName span {
+    color: #fff;
+}
+
+.noResults {
+    margin: 50px;
+    display: block;
+}
+
+.buttonItems .button {
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+.playlistContainer {
+    padding: 10px 0; 
+}
+
+.playlistImage {
+   border: 3px solid #282828;
+   padding: 10px; 
+}
+
+.optionsMenu {
+    position: fixed;
+    background-color: #282828;
+    width: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    z-index: 1000;
+    display: none;
+}
+
+.optionsMenu .item {
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    font-weight: 400;
+    color: rgba(147, 147, 147, 0.8);
+    cursor: pointer;
+    height: 40px;
+    background-color: #282828;
+    font-size: 14px;
+}
+
+.optionsMenu .item:hover {
+    color: #fff;
+    background-color: #333;
+    border-color: #333;
+}
+
+.optionsMenu select {
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.userInfo h1{
+    text-align: center;
+}
+
+.userDetails {
+    padding: 20px;
+}
+
+.userDetails .container h2 {
+    text-align: center;
+}
+
+/* Targeting all input elements with the type 'text', 'password', */
+.userDetails .container input[type="text"],
+.userDetails .container input[type="password"],
+.userDetails .container .button {
+    display: block;
+    margin: 16px auto;
+}
+
+.userDetails .container input[type="text"],
+.userDetails .container input[type="password"] {
+    height: 50px;
+    width: 100%;
+    background: #1f1f1f;
+    border: none;
+    font-size: 18px;
+    font-weight: 300px;
+    padding: 0 20px;
+}
+
+.userDetails .container .message {
+    color: #2ebd59;
+    font-weight: 300px;
+}
+
+::-webkit-scrollbar {  
+    width: 10px;
+}
+   
+::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 20px;
+}
+  
+::-webkit-scrollbar-track {
+    background: #181818;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ddd;
 }

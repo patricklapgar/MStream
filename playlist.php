@@ -21,7 +21,7 @@
 
     <div class="rightSection">
         <h2><?php echo $playlist->getName(); ?></h2>
-        <p>By <?php  echo $playlist->getOwner(); ?> </p>
+        <p class="controlButton buttonSpecial" onclick="openPage('settings.php')">By <?php  echo $playlist->getOwner(); ?> </p>
         <p><?php echo $playlist->getNumberOfSongs(); ?> Songs</p>
         <button class="button buttonSpecial" onclick="deletePlaylist('<?php echo $playlistId; ?>')">DELETE PLAYLIST</button>
         <button class="button green buttonSpecial" style="margin: 0px 0px 0px 10px " onclick="playFirstSong()">PLAY</button>

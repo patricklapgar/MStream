@@ -55,11 +55,11 @@
 					<p>
 						<?php echo $account->getError(Constants::$loginFailed); ?>
 						<label for="loginUsername">Username</label>
-						<input id="loginUsername" type="text" name="loginUsername" placeholder="e.g. alexChheng" value="<?php getInputValue('loginUsername') ?>" required>
+						<input id="loginUsername" class='specialInput buttonSpecial' type="text" name="loginUsername" placeholder="e.g. alexChheng" value="<?php getInputValue('loginUsername') ?>" required>
 					</p>
 					<p>
 						<label for="loginPassword">Password</label>
-						<input id="loginPassword" type="password" name="loginPassword" placeholder="Your Password" required>
+						<input id="loginPassword" class='specialInput buttonSpecial' type="password" name="loginPassword" placeholder="Your Password" required>
 					</p>
 
 					<button class="buttonSpecial" type="submit" name="loginButton">Login</button>
@@ -76,20 +76,19 @@
 						<?php echo $account->getError(Constants::$usernameCharacters); ?>
 						<?php echo $account->getError(Constants::$usernameTaken); ?>
 						<label for="registerUsername">Username</label>
-						<input id="registerUsername" type="text" name="registerUsername" placeholder="e.g. alexChheng" value="<?php getInputValue('registerUsername') ?>" required>
+						<input id="registerUsername" class='specialInput buttonSpecial' type="text" name="registerUsername" placeholder="e.g. alexChheng" value="<?php getInputValue('registerUsername') ?>" required>
 					</p>
 
 					<p>
 						<?php echo $account->getError(Constants::$firstNameCharacters); ?>
 						<label for="firstName">First Name</label>
-						<input id="firstName`
-					" type="text" name="firstName" placeholder="e.g. Alexandra" value="<?php getInputValue('firstName') ?>" required>
+						<input id="firstName" class='specialInput buttonSpecial' type="text" name="firstName" placeholder="e.g. Alexandra" value="<?php getInputValue('firstName') ?>" required>
 					</p>
 
 					<p>
 						<?php echo $account->getError(Constants::$lastNameCharacters); ?>
 						<label for="lastName">Last Name</label>
-						<input id="lastName" type="text" name="lastName" placeholder="e.g. Chheng" value="<?php getInputValue('lastName') ?>" required>
+						<input id="lastName" class='specialInput buttonSpecial' type="text" name="lastName" placeholder="e.g. Chheng" value="<?php getInputValue('lastName') ?>" required>
 					</p>
 
 					<p>
@@ -97,12 +96,12 @@
 						<?php echo $account->getError(Constants::$emailInvalid); ?>
 						<?php echo $account->getError(Constants::$emailTaken); ?>
 						<label for="registerEmail">Email</label>
-						<input id="registerEmail" type="email" name="registerEmail" placeholder="e.g. alexChheng@email.com" value="<?php getInputValue('registerEmail') ?>" required>
+						<input id="registerEmail" class='specialInput buttonSpecial' type="email" name="registerEmail" placeholder="e.g. alexChheng@email.com" value="<?php getInputValue('registerEmail') ?>" required>
 					</p>
 
 					<p>
 						<label for="emailConfirmation">Confirm Email</label>
-						<input id="emailConfirmation" type="email" name="emailConfirmation" placeholder="e.g. alexChheng@email.com" value="<?php getInputValue('emailConfirmation') ?>" required>
+						<input id="emailConfirmation" class='specialInput buttonSpecial' type="email" name="emailConfirmation" placeholder="e.g. alexChheng@email.com" value="<?php getInputValue('emailConfirmation') ?>" required>
 					</p>
 
 
@@ -113,12 +112,12 @@
 						<?php echo $account->getError(Constants::$passwordNotAlphanumeric); ?>
 						<?php echo $account->getError(Constants::$passwordCharacters); ?>
 						<label for="registerPassword">Password</label>
-						<input id="registerPassword" type="password" name="registerPassword" placeholder="Your Password" required>
+						<input id="registerPassword" class='specialInput buttonSpecial' type="password" name="registerPassword" placeholder="Your Password" required>
 					</p>
 
 					<p>
 						<label for="passwordConfirmation">Confirm Password</label>
-						<input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Your Password" required>
+						<input id="passwordConfirmation" class='specialInput buttonSpecial' type="password" name="passwordConfirmation" placeholder="Your Password" required>
 					</p>
 
 					<button class="buttonSpecial" type="submit" name="registerButton">Sign Up</button>
@@ -142,7 +141,7 @@
 			</div>
 
 		</div>
-		<h5 id="courtesy">Courtesy of <a href="https://icons8.com/paid-license-99">Icons8</a> for supplying the icons used in this application</h5>
+		<h6 id="courtesy">Courtesy of <a href="https://icons8.com/paid-license-99">Icons8</a> for supplying the icons used in this application</h6>
 	</div>
 
 </body>

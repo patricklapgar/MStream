@@ -6,7 +6,7 @@ html, body {
 
 #background {
     background-color: #000;
-    background-image: url(../images/bg.jpg);
+    background-image: url(../images/new-background-image5.jpg);
     background-position: center;
     background-size: cover;
     display: table;
@@ -81,6 +81,11 @@ html, body {
     opacity: 3;
 }
 
+#registerUsername, 
+#registerPassword {
+    background-color: transparent;
+}
+
 #registerForm,
 #loginForm {
     display: none;
@@ -140,6 +145,10 @@ html, body {
     color: #07d159;
     font-size: 12px;
     display: block;
+}
+
+.specialInput {
+    border-radius: 5px;
 }
 
 .buttonSpecial:focus {

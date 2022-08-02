@@ -1,6 +1,6 @@
-# MStream_music_application
+# Spotify Clone
 
-MStream is a locally hosted music streaming website that's built from:
+My Spotify Clone (aka MStream is what I call it) is a locally hosted music streaming website that's built from:
 - JavaScript as the client-side language
 - jQuery as a JavaScript framework
 - PHP for backend scripting as well as object-oriented design
